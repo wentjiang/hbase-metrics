@@ -1,4 +1,4 @@
-package com.wentjiang.agent;
+package com.wentjiang;
 
 import net.bytebuddy.implementation.bind.annotation.*;
 

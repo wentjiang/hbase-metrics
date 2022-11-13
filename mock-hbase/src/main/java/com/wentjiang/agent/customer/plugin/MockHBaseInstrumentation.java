@@ -1,9 +1,7 @@
 package com.wentjiang.agent.customer.plugin;
 
-import com.wentjiang.agent.interceptor.ConstructorInterceptPoint;
 import com.wentjiang.agent.interceptor.InstanceMethodsInterceptPoint;
 import com.wentjiang.agent.interceptor.enhance.ClassEnhancePluginDefine;
-import com.wentjiang.agent.interceptor.enhance.ClassInstanceMethodsEnhancePluginDefine;
 import com.wentjiang.agent.match.ClassMatch;
 import com.wentjiang.agent.match.NameMatch;
 import net.bytebuddy.description.method.MethodDescription;

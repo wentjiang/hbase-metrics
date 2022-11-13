@@ -47,7 +47,8 @@ public class InterceptorInstanceLoader {
             try {
                 ClassLoader pluginLoader = EXTEND_PLUGIN_CLASSLOADERS.get(targetClassLoader);
                 if (pluginLoader == null) {
-                    pluginLoader = new AgentClassLoader(targetClassLoader);
+                    pluginLoader = null;
+//                new AgentClassLoader(targetClassLoader);
                     EXTEND_PLUGIN_CLASSLOADERS.put(targetClassLoader, pluginLoader);
                 }
                 inst = Class.forName(className, true, pluginLoader).newInstance();
