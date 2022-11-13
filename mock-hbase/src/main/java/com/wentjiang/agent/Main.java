@@ -23,7 +23,8 @@ public class Main {
 //                );
 //
 //        System.out.println(new MockHBase().mockReadHBaseCache("fileName"));
-        new MockHBase().mockReadHBaseCache("fileName");
+        System.out.println("class loader in main: " +Main.class.getClassLoader().getName());
+        System.out.println(new MockHBase().mockReadHBaseCache("fileName"));
     }
 
 //    public static void delegateTo() {

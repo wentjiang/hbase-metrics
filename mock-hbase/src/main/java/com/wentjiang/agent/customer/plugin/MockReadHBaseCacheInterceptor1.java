@@ -6,7 +6,7 @@ import com.wentjiang.agent.plugin.MethodInterceptResult;
 
 import java.lang.reflect.Method;
 
-public class MockReadHBaseCacheInterceptor implements InstanceMethodsAroundInterceptor {
+public class MockReadHBaseCacheInterceptor1 implements InstanceMethodsAroundInterceptor {
     @Override
     public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) throws Throwable {
         System.out.println("before method");

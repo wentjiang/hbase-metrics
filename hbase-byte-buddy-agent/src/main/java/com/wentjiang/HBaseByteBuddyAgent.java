@@ -1,12 +1,11 @@
 package com.wentjiang;
 
-import net.bytebuddy.ByteBuddy;
-import net.bytebuddy.agent.ByteBuddyAgent;
-import net.bytebuddy.dynamic.loading.ClassLoadingStrategy;
+import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.implementation.MethodDelegation;
+import net.bytebuddy.matcher.ElementMatchers;
 
 import java.lang.instrument.Instrumentation;
-import java.lang.reflect.InvocationTargetException;
 
 import static net.bytebuddy.matcher.ElementMatchers.named;
 
@@ -21,20 +20,30 @@ public class HBaseByteBuddyAgent {
         }
         System.out.println("premain in HBaseByteBuddyAgent");
         System.out.println("class name: " + clazz.getSimpleName());
-        ByteBuddyAgent.install();
-        new ByteBuddy()
-                .subclass(clazz)
-                .method(named("mockReadHBaseCache"))
-                .intercept(MethodDelegation.to(LoggerInterceptor.class))
-                .make()
-                .load(clazz.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER);
-        try {
-            System.out.println("before call method");
-            clazz.getMethod("mockReadHBaseCache", String.class).invoke(clazz.newInstance(),"filename1");
-            System.out.println("after call method");
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+
+        Class finalClazz = clazz;
+        new AgentBuilder.Default()
+                .type(ElementMatchers.is(clazz))
+                .transform((builder, typeDescription, classLoader, module, protectionDomain) -> {
+                    System.out.println("start transform!");
+                    builder.method(named("mockReadHBaseCache"))
+                            .intercept(
+                                    FixedValue.value("transformed")
+//                                    MethodDelegation.withDefaultConfiguration()
+//                                    .to(new InstMethodsInter("com.wentjiang.MockReadHBaseCacheInterceptor", classLoader))
+                            );
+                    System.out.println("finish transform!");
+                    return builder;
+                })
+                .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
+//                .with(AgentBuilder.Listener.StreamWriting.toSystemOut())
+                .installOn(inst);
+
+//        try {
+//            clazz.getMethod("mockReadHBaseCache", String.class).invoke(clazz.newInstance(),"filename1");
+//        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+//            throw new RuntimeException(e);
+//        }
         System.out.println("premain in HBaseByteBuddyAgent done");
     }
 }
