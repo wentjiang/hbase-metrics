@@ -24,6 +24,4 @@ public class LogUtil {
         return content;
     }
 
-    public
-
 }

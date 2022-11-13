@@ -12,7 +12,7 @@ public class MetricsInterceptor {
             @This Object self,
             @AllArguments Object[] allArguments) throws NoSuchMethodException {
         System.out.println("asdfasdf");
-        Method method = self.getClass().getMethod("test",String.class,String.class)
+        Method method = self.getClass().getMethod("test",String.class,String.class);
 
         return ((TestClass)self).test("a","b");
     }
