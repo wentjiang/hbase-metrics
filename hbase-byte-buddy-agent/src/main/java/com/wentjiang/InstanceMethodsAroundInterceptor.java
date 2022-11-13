@@ -1,6 +1,7 @@
 package com.wentjiang;
 
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 public interface InstanceMethodsAroundInterceptor {
     /**
@@ -9,7 +10,7 @@ public interface InstanceMethodsAroundInterceptor {
      * @param result change this result, if you want to truncate the method.
      * @throws Throwable
      */
-    void beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes) throws Throwable;
+    void beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, String requestId) throws Throwable;
 
     /**
      * called after target method invocation. Even method's invocation triggers an exception.
@@ -20,7 +21,7 @@ public interface InstanceMethodsAroundInterceptor {
      * @throws Throwable
      */
     Object afterMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes,
-                       Object ret) throws Throwable;
+                       Object ret, String requestId) throws Throwable;
 
     /**
      * called when occur exception.
@@ -30,5 +31,5 @@ public interface InstanceMethodsAroundInterceptor {
      */
     void handleMethodException(Method method, Object[] allArguments,
                                Class<?>[] argumentsTypes,
-                               Throwable t);
+                               Throwable t, String requestId);
 }

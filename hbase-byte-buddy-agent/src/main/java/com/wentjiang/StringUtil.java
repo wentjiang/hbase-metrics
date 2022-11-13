@@ -1,5 +1,7 @@
 package com.wentjiang;
 
+import java.util.UUID;
+
 public final class StringUtil {
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0;
@@ -43,5 +45,9 @@ public final class StringUtil {
             }
         }
         return true;
+    }
+
+    public static String generateRequestId(){
+        return UUID.randomUUID().toString();
     }
 }
