@@ -1,13 +1,14 @@
 package com.wentjiang;
 
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 public class LogUtil {
 
     public static String OPERATE_BEGIN = "BEGIN";
     public static String OPERATE_END = "END";
 
-    public static String recordMetrics(Class clazz, Method method, String operate, String uuid){
+    public static String recordMetrics(Class clazz, Method method, String operate, String uuid) {
         String className = clazz.getName();
         String methodName = method.getName();
 
@@ -18,12 +19,13 @@ public class LogUtil {
                 "methodName":"${methodName}",
                 "operate":"${operate}",
                 "timestamp":${System.currentTimeMillis()},
-                ""
+                "uuid":"${uuid}"
                 }
                 """;
         return content;
     }
 
-    public
-
+    public static String getUUID() {
+        return UUID.randomUUID().toString();
+    }
 }

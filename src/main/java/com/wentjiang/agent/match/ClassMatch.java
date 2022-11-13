@@ -1,2 +1,4 @@
-package com.wentjiang.agent.interceptor;public class ClassMatch {
+package com.wentjiang.agent.match;
+
+public interface ClassMatch {
 }
