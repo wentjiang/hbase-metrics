@@ -15,13 +15,13 @@ public class LogUtil {
         //todo 修改为模板字符串
         String content = "";
 //                """
-//                {
-//                "className":"$className",
-//                "methodName":"${methodName}",
-//                "operate":"${operate}",
-//                "timestamp":${System.currentTimeMillis()},
-//                "uuid":"${uuid}"
-//                }
+//                    {
+//                        "className":"$className",
+//                        "methodName":"${methodName}",
+//                        "operate":"${operate}",
+//                        "timestamp":${System.currentTimeMillis()},
+//                        "uuid":"${uuid}"
+//                    }
 //                """;
         return content;
     }
