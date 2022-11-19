@@ -20,6 +20,7 @@ public class MockReadHBaseCacheInterceptor implements InstanceMethodsAroundInter
     @Override
     public Object afterMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret, String requestId) {
         long endTime = System.currentTimeMillis();
+        //todo 需要handle ret为null的情况
         LOG.info("return: " + ret.toString() + " requestId: " + requestId + "endTime: " + endTime);
         System.out.println("return: " + ret.toString() + " requestId: " + requestId + "endTime: " + endTime);
         return ret;
