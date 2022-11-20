@@ -1,3 +1,23 @@
+## 模块划分
+
+### hbase-example
+hbase的一些本地简单使用的例子
+
+### hbase-metrics-agent
+hbase agent 切面增强的实现模块
+
+### jmx-collector
+hbase jmx性能分析的采集器
+
+### metrics-analyse
+对于采集到的metrics进行分析
+
+## format code
+
+```
+mvn formatter:format
+```
+
 ### Start commend
 
 ```
