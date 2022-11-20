@@ -47,7 +47,7 @@ public final class StringUtil {
         return true;
     }
 
-    public static String generateRequestId(){
+    public static String generateRequestId() {
         return UUID.randomUUID().toString();
     }
 }

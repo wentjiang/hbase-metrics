@@ -4,7 +4,7 @@ import java.beans.JavaBean;
 
 public class MockHBase {
 
-    public String mockReadHBaseCache(String fileName){
+    public String mockReadHBaseCache(String fileName) {
         String content = "fileName: " + fileName;
         try {
             Thread.sleep(2000);

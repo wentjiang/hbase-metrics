@@ -32,8 +32,8 @@ public class AgentClassLoader extends ClassLoader {
     private ReentrantLock jarScanLock = new ReentrantLock();
 
     /**
-     * Functional Description: solve the classloader dead lock when jvm start
-     * only support JDK7+, since ParallelCapable appears in JDK7+
+     * Functional Description: solve the classloader dead lock when jvm start only support JDK7+, since ParallelCapable
+     * appears in JDK7+
      */
     private static void tryRegisterAsParallelCapable() {
         Method[] methods = ClassLoader.class.getDeclaredMethods();
@@ -45,7 +45,7 @@ public class AgentClassLoader extends ClassLoader {
                     method.setAccessible(true);
                     method.invoke(null);
                 } catch (Exception e) {
-                    logger.warn("can not invoke ClassLoader.registerAsParallelCapable()",e);
+                    logger.warn("can not invoke ClassLoader.registerAsParallelCapable()", e);
                 }
                 return;
             }
@@ -55,7 +55,6 @@ public class AgentClassLoader extends ClassLoader {
     public static AgentClassLoader getDefault() {
         return DEFAULT_LOADER;
     }
-
 
     public AgentClassLoader(ClassLoader parent) {
         super(parent);
@@ -99,9 +98,9 @@ public class AgentClassLoader extends ClassLoader {
                     }
                     return defineClass(name, data, 0, data.length);
                 } catch (MalformedURLException e) {
-                    logger.error( "find class fail.",e);
+                    logger.error("find class fail.", e);
                 } catch (IOException e) {
-                    logger.error("find class fail.",e);
+                    logger.error("find class fail.", e);
                 }
             }
         }
@@ -170,7 +169,7 @@ public class AgentClassLoader extends ClassLoader {
                                     allJars.add(jar);
                                     logger.info("{} loaded.", file.toString());
                                 } catch (IOException e) {
-                                    logger.error(fileName+" jar file can't be resolved", e);
+                                    logger.error(fileName + " jar file can't be resolved", e);
                                 }
                             }
                         }

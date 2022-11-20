@@ -1,6 +1,6 @@
 package com.wentjiang;
 
-public class HMaster extends HRegionServer{
+public class HMaster extends HRegionServer {
 
     @Override
     public String run(String params) {

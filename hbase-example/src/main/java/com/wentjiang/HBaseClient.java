@@ -14,10 +14,7 @@ public class HBaseClient {
     public HBaseClient() {
         Configuration config = HBaseConfiguration.create();
 
-        String path = this.getClass()
-                .getClassLoader()
-                .getResource("hbase-site.xml")
-                .getPath();
+        String path = this.getClass().getClassLoader().getResource("hbase-site.xml").getPath();
         config.addResource(new Path(path));
 
         try {
@@ -27,7 +24,7 @@ public class HBaseClient {
         }
     }
 
-    public void createTable(String tableName, List<String> families){
+    public void createTable(String tableName, List<String> families) {
         TableName table1 = TableName.valueOf("Table1");
         String family1 = "Family1";
         String family2 = "Family2";

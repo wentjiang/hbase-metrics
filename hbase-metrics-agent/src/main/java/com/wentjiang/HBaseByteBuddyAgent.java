@@ -14,18 +14,13 @@ public class HBaseByteBuddyAgent {
 
         System.out.println("premain in HBaseByteBuddyAgent");
 
-        new AgentBuilder.Default()
-                .type(ElementMatchers.nameContainsIgnoreCase("HMaster"))
+        new AgentBuilder.Default().type(ElementMatchers.nameContainsIgnoreCase("HMaster"))
                 .transform((builder, typeDescription, classLoader, module, protectionDomain) -> {
                     System.out.println("start transform!");
-                    return builder.method(named("run"))
-                            .intercept(
-                                    MethodDelegation.withDefaultConfiguration()
-                                    .to(new InstMethodsInter("com.wentjiang.MockReadHBaseCacheInterceptor", classLoader))
-                            );
-                })
-                .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
-//                .with(AgentBuilder.Listener.StreamWriting.toSystemOut())
+                    return builder.method(named("run")).intercept(MethodDelegation.withDefaultConfiguration()
+                            .to(new InstMethodsInter("com.wentjiang.MockReadHBaseCacheInterceptor", classLoader)));
+                }).with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
+                // .with(AgentBuilder.Listener.StreamWriting.toSystemOut())
                 .installOn(inst);
 
         System.out.println("premain in HBaseByteBuddyAgent done");

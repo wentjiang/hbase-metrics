@@ -1,3 +1,6 @@
+## 编译环境
+使用java 8进行编译,如果需要用format插件的话,需要运行时环境在java11及以上
+
 ## 模块划分
 
 ### hbase-example
@@ -13,7 +16,7 @@ hbase jmx性能分析的采集器
 对于采集到的metrics进行分析
 
 ## format code
-
+Note: 需要使用java 11以上的运行时环境才可以执行
 ```
 mvn formatter:format
 ```
