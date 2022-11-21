@@ -69,6 +69,7 @@
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
+                            <finalName>hbase-metrics-agent</finalName>
                         </configuration>
                     </execution>
                 </executions>
