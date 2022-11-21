@@ -1,4 +1,4 @@
-package com.wentjiang;
+package com.wentjiang.agent.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +22,7 @@ public class AgentClassLoader extends ClassLoader {
     }
 
     private static final Logger logger = LoggerFactory.getLogger(AgentClassLoader.class);
-    /**
-     * The default class loader for the agent.
-     */
+
     private static AgentClassLoader DEFAULT_LOADER;
 
     private List<File> classpath;

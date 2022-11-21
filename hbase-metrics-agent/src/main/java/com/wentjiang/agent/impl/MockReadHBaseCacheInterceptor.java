@@ -1,12 +1,14 @@
-package com.wentjiang;
+package com.wentjiang.agent.impl;
 
+import com.wentjiang.agent.InstanceMethodsAroundInterceptor;
+import com.wentjiang.agent.common.MethodInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-public class MockReadHBaseCacheInterceptor implements InstanceMethodsAroundInterceptor {
+public class MockReadHBaseCacheInterceptor extends InstanceMethodsAroundInterceptor {
     private static Logger LOG = LoggerFactory.getLogger(MockReadHBaseCacheInterceptor.class);
 
     @Override
@@ -32,5 +34,15 @@ public class MockReadHBaseCacheInterceptor implements InstanceMethodsAroundInter
     public void handleMethodException(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t,
             String requestId) {
 
+    }
+
+    @Override
+    public String getEnhanceClassName() {
+        return null;
+    }
+
+    @Override
+    public MethodInfo getEnhanceMethodInfo() {
+        return null;
     }
 }

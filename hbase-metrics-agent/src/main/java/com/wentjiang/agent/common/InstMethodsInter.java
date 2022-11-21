@@ -1,5 +1,7 @@
-package com.wentjiang;
+package com.wentjiang.agent.common;
 
+import com.wentjiang.agent.util.StringUtil;
+import com.wentjiang.agent.InstanceMethodsAroundInterceptor;
 import net.bytebuddy.implementation.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,15 +9,14 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Method;
 import java.util.concurrent.Callable;
 
+/**
+ * 增强的通用方法
+ */
 public class InstMethodsInter {
     private static final Logger logger = LoggerFactory.getLogger(InstMethodsInter.class);
 
     private InstanceMethodsAroundInterceptor interceptor;
 
-    /**
-     * @param instanceMethodsAroundInterceptorClassName
-     *            class full name.
-     */
     public InstMethodsInter(String instanceMethodsAroundInterceptorClassName, ClassLoader classLoader) {
         try {
             interceptor = InterceptorInstanceLoader.load(instanceMethodsAroundInterceptorClassName, classLoader);
@@ -24,29 +25,11 @@ public class InstMethodsInter {
         }
     }
 
-    /**
-     * Intercept the target instance method.
-     *
-     * @param obj
-     *            target class instance.
-     * @param allArguments
-     *            all method arguments
-     * @param method
-     *            method description.
-     * @param zuper
-     *            the origin call ref.
-     * 
-     * @return the return value of target instance method.
-     * 
-     * @throws Exception
-     *             only throw exception because of zuper.call() or unexpected exception in sky-walking ( This is a bug,
-     *             if anything triggers this condition ).
-     */
     @RuntimeType
     public Object intercept(@This Object obj, @AllArguments Object[] allArguments, @SuperCall Callable<?> zuper,
             @Origin Method method) throws Throwable {
         String requestId = StringUtil.generateRequestId();
-        System.out.println("run in intercept method: " + interceptor.getClass().getSimpleName());
+
         try {
             interceptor.beforeMethod(method, allArguments, method.getParameterTypes(), requestId);
         } catch (Throwable t) {

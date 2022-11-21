@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Premain-Class: com.wentjiang.HBaseByteBuddyAgent
+Premain-Class: com.wentjiang.agent.HBaseByteBuddyAgent
 Can-Retransform-Classes: true
 Can-Redefine-Classes: true
