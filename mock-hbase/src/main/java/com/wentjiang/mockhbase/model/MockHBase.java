@@ -1,6 +1,4 @@
-package com.wentjiang;
-
-import java.beans.JavaBean;
+package com.wentjiang.mockhbase.model;
 
 public class MockHBase {
 

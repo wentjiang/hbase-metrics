@@ -1,4 +1,4 @@
-package com.wentjiang;
+package com.wentjiang.mockhbase.model;
 
 public class HRegionServer {
 

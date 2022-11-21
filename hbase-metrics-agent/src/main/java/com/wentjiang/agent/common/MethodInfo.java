@@ -8,7 +8,8 @@ import java.util.List;
 @Builder
 @Getter
 public class MethodInfo {
+    // 必须有methodName
     private String methodName;
-    private Integer argLength;
-    private List<ParamFullClassName> paramNames;
+    private Integer argumentLength;
+    private List<String> paramNames;
 }

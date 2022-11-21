@@ -37,6 +37,6 @@ public class HRegionDoWALAppendInterceptor extends InstanceMethodsAroundIntercep
 
     @Override
     public MethodInfo getEnhanceMethodInfo() {
-        return MethodInfo.builder().argLength(7).build();
+        return MethodInfo.builder().methodName("doWALAppend").argumentLength(7).build();
     }
 }
