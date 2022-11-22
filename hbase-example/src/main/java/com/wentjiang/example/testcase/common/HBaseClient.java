@@ -61,6 +61,14 @@ public class HBaseClient {
         }
     }
 
+    public void disableTable(String tableName){
+        try {
+            admin.disableTable(TableName.valueOf(tableName));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void deleteRow(String tableName, String rowKey) {
         byte[] row = Bytes.toBytes(rowKey);
         Delete d = new Delete(row);

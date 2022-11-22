@@ -3,6 +3,7 @@ package com.wentjiang.example;
 import com.wentjiang.example.testcase.common.HBaseClient;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
+import org.apache.hadoop.hbase.client.Durability;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -36,7 +37,7 @@ public class Main {
 
     public static void putData(String tableName, String rowKey, String familyName, String qualifier, String value) {
         HBaseClient client = new HBaseClient();
-        client.putData(tableName, rowKey, familyName, qualifier, value);
+        client.putData(tableName, rowKey, familyName, qualifier, value, Durability.SYNC_WAL);
     }
 
     public static void getData(String tableName, String rowKey) {
