@@ -47,13 +47,34 @@ public class HBaseClient {
         }
     }
 
-    public void putData(String tableName, String rowKey, String familyName, String qualifier, String value) {
+    public void putData(String tableName, String rowKey, String familyName, String qualifier, String value,
+            Durability durability) {
         byte[] row = Bytes.toBytes(rowKey);
         Put p = new Put(row);
         p.addImmutable(familyName.getBytes(), qualifier.getBytes(), Bytes.toBytes(value));
+        p.setDurability(durability);
         try {
             Table table = connection.getTable(TableName.valueOf(tableName));
             table.put(p);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteRow(String tableName, String rowKey) {
+        byte[] row = Bytes.toBytes(rowKey);
+        Delete d = new Delete(row);
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            table.delete(d);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteTable(String tableName) {
+        try {
+            admin.deleteTable(TableName.valueOf(tableName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
