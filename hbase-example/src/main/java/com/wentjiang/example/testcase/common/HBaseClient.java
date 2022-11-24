@@ -61,7 +61,7 @@ public class HBaseClient {
         }
     }
 
-    public void disableTable(String tableName){
+    public void disableTable(String tableName) {
         try {
             admin.disableTable(TableName.valueOf(tableName));
         } catch (IOException e) {
