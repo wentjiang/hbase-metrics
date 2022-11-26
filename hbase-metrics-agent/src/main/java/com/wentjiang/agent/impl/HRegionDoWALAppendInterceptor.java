@@ -10,12 +10,13 @@ public class HRegionDoWALAppendInterceptor extends InstanceMethodsAroundIntercep
 
     private static final String ENHANCE_CLASS_NAME = "org.apache.hadoop.hbase.regionserver.HRegion";
 
-    public HRegionDoWALAppendInterceptor() {
-        super(ENHANCE_CLASS_NAME);
+    @Override
+    public String getEnhanceClassName() {
+        return ENHANCE_CLASS_NAME;
     }
 
     @Override
-    public MethodInfo getEnhanceMethodInfo() {
+    public MethodInfo getMethodInfo() {
         return MethodInfo.builder().methodName("doWALAppend").build();
     }
 }

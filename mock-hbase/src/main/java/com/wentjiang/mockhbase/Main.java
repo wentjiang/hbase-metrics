@@ -13,6 +13,7 @@ public class Main {
         logger.info("start");
         HMaster hMaster = new HMaster();
         hMaster.getRegion(new RegionInfo("region"), "test");
+        hMaster.run("test");
         logger.info("end");
     }
 }

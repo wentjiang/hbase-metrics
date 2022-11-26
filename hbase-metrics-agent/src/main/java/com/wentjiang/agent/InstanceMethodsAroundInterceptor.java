@@ -10,53 +10,34 @@ import java.util.HashMap;
 
 import static com.wentjiang.agent.util.LogUtil.*;
 
-public class InstanceMethodsAroundInterceptor {
-    private final Logger logger = LoggerFactory.getLogger(InstanceMethodsAroundInterceptor.class);
-    private final String className;
-    private Class clazz;
-    private boolean isReady = false;
+public abstract class InstanceMethodsAroundInterceptor {
 
-    public InstanceMethodsAroundInterceptor(String className) {
-        this.className = className;
-        try {
-            clazz = Class.forName(className);
-            isReady = true;
-        } catch (ClassNotFoundException e) {
-            logger.warn(className + " not found");
-        }
-    }
+    private static Logger logger = LoggerFactory.getLogger(InstanceMethodsAroundInterceptor.class);
 
     public void beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, String requestId)
             throws Throwable {
-        String metricJson = LogUtil.recordMetrics(clazz, method, OPERATE_BEGIN, requestId, new HashMap<>());
-        System.out.println("metricJson: " + metricJson);
+        String metricJson = LogUtil.recordMetrics(getEnhanceClassName(), method, OPERATE_BEGIN, requestId,
+                new HashMap<>());
         logger.info("metricJson: " + metricJson);
     }
 
     public Object afterMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret,
             String requestId) throws Throwable {
-        String metricJson = LogUtil.recordMetrics(clazz, method, OPERATE_END, requestId, new HashMap<>());
-        System.out.println("metricJson: " + metricJson);
+        String metricJson = LogUtil.recordMetrics(getEnhanceClassName(), method, OPERATE_END, requestId,
+                new HashMap<>());
         logger.info("metricJson: " + metricJson);
         return ret;
     }
 
     public void handleMethodException(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t,
             String requestId) {
-        String metricJson = LogUtil.recordMetrics(clazz, method, OPERATE_EXCEPTION, requestId, new HashMap<>());
-        System.out.println("exception metricJson: " + metricJson);
+        String metricJson = LogUtil.recordMetrics(getEnhanceClassName(), method, OPERATE_EXCEPTION, requestId,
+                new HashMap<>());
         logger.error("exception metricJson: " + metricJson);
     }
 
-    public String getEnhanceClassName() {
-        return className;
-    }
+    public abstract String getEnhanceClassName();
 
-    public MethodInfo getEnhanceMethodInfo() {
-        throw new IllegalStateException("should implement in subclass");
-    }
+    public abstract MethodInfo getMethodInfo();
 
-    public boolean isReady() {
-        return isReady;
-    }
 }

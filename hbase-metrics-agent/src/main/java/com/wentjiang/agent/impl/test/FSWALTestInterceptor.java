@@ -7,12 +7,13 @@ public class FSWALTestInterceptor extends InstanceMethodsAroundInterceptor {
 
     private static final String ENHANCE_CLASS_NAME = "org.apache.hadoop.hbase.regionserver.wal.AbstractFSWAL";
 
-    public FSWALTestInterceptor() {
-        super(ENHANCE_CLASS_NAME);
+    @Override
+    public String getEnhanceClassName() {
+        return ENHANCE_CLASS_NAME;
     }
 
     @Override
-    public MethodInfo getEnhanceMethodInfo() {
+    public MethodInfo getMethodInfo() {
         return MethodInfo.builder().methodName("postSync").build();
     }
 }

@@ -18,6 +18,9 @@ public class InstMethodsInter {
     private InstanceMethodsAroundInterceptor interceptor;
 
     public InstMethodsInter(String instanceMethodsAroundInterceptorClassName, ClassLoader classLoader) {
+
+        logger.info("load " + instanceMethodsAroundInterceptorClassName + " class");
+
         try {
             interceptor = InterceptorInstanceLoader.load(instanceMethodsAroundInterceptorClassName, classLoader);
         } catch (Throwable t) {
@@ -29,6 +32,7 @@ public class InstMethodsInter {
     public Object intercept(@This Object obj, @AllArguments Object[] allArguments, @SuperCall Callable<?> zuper,
             @Origin Method method) throws Throwable {
         String requestId = StringUtil.generateRequestId();
+        logger.info("start intercept method");
 
         try {
             interceptor.beforeMethod(method, allArguments, method.getParameterTypes(), requestId);

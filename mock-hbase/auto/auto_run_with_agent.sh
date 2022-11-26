@@ -1,3 +1,7 @@
+# clean
+echo "clean"
+cd /Users/wentjiang/workspace/hbase-metrics/
+mvn clean
 # 编译agent
 echo "compile agent"
 cd /Users/wentjiang/workspace/hbase-metrics/hbase-metrics-agent

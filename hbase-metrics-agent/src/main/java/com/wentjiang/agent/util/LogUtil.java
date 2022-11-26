@@ -11,9 +11,8 @@ public class LogUtil {
     public static String OPERATE_END = "END";
     public static String OPERATE_EXCEPTION = "EXCEPTION";
 
-    public static String recordMetrics(Class clazz, Method method, String operate, String requestId,
+    public static String recordMetrics(String className, Method method, String operate, String requestId,
             Map<String, String> map) {
-        String className = clazz.getName();
         String methodName = method.getName();
 
         return "{" + "\"className\":\"" + className + "\"," + "\"methodName\":\"" + methodName + "\","
