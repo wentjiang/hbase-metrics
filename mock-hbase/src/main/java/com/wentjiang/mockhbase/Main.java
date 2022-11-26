@@ -12,9 +12,7 @@ public class Main {
     public static void main(String[] args) {
         logger.info("start");
         HMaster hMaster = new HMaster();
-        // System.out.println(hMaster.getRegion(new RegionInfo("region"), "test"));
         hMaster.getRegion(new RegionInfo("region"), "test");
-        // hMaster.test();
         logger.info("end");
     }
 }
