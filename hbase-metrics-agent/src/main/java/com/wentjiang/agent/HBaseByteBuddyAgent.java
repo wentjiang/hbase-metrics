@@ -5,7 +5,6 @@ import com.wentjiang.agent.impl.HRegionDoWALAppendInterceptor;
 import com.wentjiang.agent.impl.mock.HRegionServerInterceptor;
 import com.wentjiang.agent.impl.mock.MockReadHBaseCacheInterceptor;
 import com.wentjiang.agent.impl.test.FSWALTestInterceptor;
-import com.wentjiang.agent.util.AgentUtils;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.matcher.ElementMatchers;
@@ -37,11 +36,8 @@ public class HBaseByteBuddyAgent {
     public static List<InstanceMethodsAroundInterceptor> getInterceptorList() {
         List<InstanceMethodsAroundInterceptor> interceptorsNeedLoad = new ArrayList<>();
         for (InstanceMethodsAroundInterceptor interceptor : interceptors) {
-            try {
-                Class.forName(interceptor.getEnhanceClassName());
+            if (interceptor.isReady()) {
                 interceptorsNeedLoad.add(interceptor);
-            } catch (ClassNotFoundException e) {
-                logger.warn("Class " + interceptor.getEnhanceClassName() + " not found in classpath");
             }
         }
         return interceptorsNeedLoad;

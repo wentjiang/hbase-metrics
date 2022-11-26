@@ -12,6 +12,6 @@ pwd
 mvn compile
 # 执行主类测试
 echo "run main"
-java -javaagent:/Users/wentjiang/workspace/hbase-metrics/hbase-metrics-agent/target/hbase-metrics-agent.jar -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /Users/wentjiang/workspace/hbase-metrics/mock-hbase/target/classes:/Users/wentjiang/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar com.wentjiang.mockhbase.Main
+java -javaagent:/Users/wentjiang/workspace/hbase-metrics/hbase-metrics-agent/target/hbase-metrics-agent.jar -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /Users/wentjiang/workspace/hbase-metrics/mock-hbase/target/classes:/Users/wentjiang/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar:/Users/wentjiang/.m2/repository/org/slf4j/slf4j-reload4j/2.0.3/slf4j-reload4j-2.0.3.jar:/Users/wentjiang/.m2/repository/org/slf4j/slf4j-api/2.0.3/slf4j-api-2.0.3.jar:/Users/wentjiang/.m2/repository/ch/qos/reload4j/reload4j/1.2.22/reload4j-1.2.22.jar:/Users/wentjiang/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.19.0/log4j-slf4j-impl-2.19.0.jar:/Users/wentjiang/.m2/repository/org/apache/logging/log4j/log4j-api/2.19.0/log4j-api-2.19.0.jar:/Users/wentjiang/.m2/repository/org/apache/logging/log4j/log4j-core/2.19.0/log4j-core-2.19.0.jar com.wentjiang.mockhbase.Main
 
 

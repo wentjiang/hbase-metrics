@@ -1,28 +1,28 @@
 package com.wentjiang.agent;
 
 import com.wentjiang.agent.common.MethodInfo;
-import com.wentjiang.agent.impl.HRegionDoWALAppendInterceptor;
 import com.wentjiang.agent.util.LogUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.UUID;
 
 import static com.wentjiang.agent.util.LogUtil.*;
 
 public class InstanceMethodsAroundInterceptor {
-    Logger logger = LoggerFactory.getLogger(InstanceMethodsAroundInterceptor.class);
-    private String className;
+    private final Logger logger = LoggerFactory.getLogger(InstanceMethodsAroundInterceptor.class);
+    private final String className;
     private Class clazz;
+    private boolean isReady = false;
 
     public InstanceMethodsAroundInterceptor(String className) {
         this.className = className;
         try {
             clazz = Class.forName(className);
+            isReady = true;
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            logger.warn(className + " not found");
         }
     }
 
@@ -54,5 +54,9 @@ public class InstanceMethodsAroundInterceptor {
 
     public MethodInfo getEnhanceMethodInfo() {
         throw new IllegalStateException("should implement in subclass");
+    }
+
+    public boolean isReady() {
+        return isReady;
     }
 }

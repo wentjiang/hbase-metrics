@@ -26,15 +26,21 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.3</version>
+            </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.25</version>
+                <version>2.0.3</version>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.19.0</version>
             </dependency>
 
             <!--hbase dependencies-->
@@ -43,11 +49,6 @@
                 <artifactId>hbase-client</artifactId>
                 <version>${hbase.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.apache.hbase</groupId>-->
-<!--                <artifactId>hbase</artifactId>-->
-<!--                <version>${hbase.version}</version>-->
-<!--            </dependency>-->
 
             <!--utils-->
             <dependency>
