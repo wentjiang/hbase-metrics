@@ -1,7 +1,5 @@
 package com.wentjiang;
 
-import java.beans.JavaBean;
-
 public class MockHBase {
 
     public String mockReadHBaseCache(String fileName){

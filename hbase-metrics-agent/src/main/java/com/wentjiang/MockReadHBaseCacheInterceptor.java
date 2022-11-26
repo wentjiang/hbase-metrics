@@ -1,6 +1,5 @@
 package com.wentjiang;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,21 +12,25 @@ public class MockReadHBaseCacheInterceptor implements InstanceMethodsAroundInter
     @Override
     public void beforeMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, String requestId) {
         long startTime = System.currentTimeMillis();
-        LOG.info("before method, the arguments input is: " + Arrays.toString(allArguments) + " requestId: " + requestId + " startTime: " + startTime);
-        System.out.println("before method, the arguments input is: " + Arrays.toString(allArguments) + " requestId: " + requestId + " startTime: " + startTime);
+        LOG.info("before method, the arguments input is: " + Arrays.toString(allArguments) + " requestId: " + requestId
+                + " startTime: " + startTime);
+        System.out.println("before method, the arguments input is: " + Arrays.toString(allArguments) + " requestId: "
+                + requestId + " startTime: " + startTime);
     }
 
     @Override
-    public Object afterMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret, String requestId) {
+    public Object afterMethod(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret,
+            String requestId) {
         long endTime = System.currentTimeMillis();
-        //todo 需要handle ret为null的情况
+        // todo 需要handle ret为null的情况
         LOG.info("return: " + ret.toString() + " requestId: " + requestId + "endTime: " + endTime);
         System.out.println("return: " + ret.toString() + " requestId: " + requestId + "endTime: " + endTime);
         return ret;
     }
 
     @Override
-    public void handleMethodException(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t, String requestId) {
+    public void handleMethodException(Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t,
+            String requestId) {
 
     }
 }
