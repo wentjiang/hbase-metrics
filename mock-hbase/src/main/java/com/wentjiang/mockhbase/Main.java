@@ -14,6 +14,7 @@ public class Main {
         HMaster hMaster = new HMaster();
         hMaster.getRegion(new RegionInfo("region"), "test");
         hMaster.run("test");
+        hMaster.testNotImplInSubClass();
         logger.info("end");
     }
 }

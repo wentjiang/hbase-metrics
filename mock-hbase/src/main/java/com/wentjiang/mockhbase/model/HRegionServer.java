@@ -11,4 +11,8 @@ public class HRegionServer {
         return params;
     }
 
+    public void testNotImplInSubClass(){
+        System.out.println("this method not implement in subclass");
+    }
+
 }
