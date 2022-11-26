@@ -11,10 +11,10 @@ import java.util.List;
 
 public class Main {
     private static String tableName = "test_table";
-    private static String rowKey = "test_rowKey";
+    private static String rowKey = "test_rowKey1";
     private static String familyName = "test_field";
     private static String qualifier = "test_qualifierName";
-    private static String value = "test_value";
+    private static String value = "test_value1";
 
     public static void main(String[] args) {
         createTable(tableName, Collections.singletonList(familyName));
