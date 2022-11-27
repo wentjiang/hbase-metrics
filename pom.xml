@@ -13,7 +13,7 @@
         <module>mock-hbase</module>
         <module>jmx-collector</module>
         <module>metrics-analyse</module>
-        <module>hbase-example</module>
+        <module>hbase-performance-test-cases</module>
     </modules>
 
     <properties>
