@@ -1,4 +1,4 @@
-package com.wentjiang.example.testcase.common;
+package com.wentjiang.testcase.common;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

@@ -1,6 +1,5 @@
-package com.wentjiang.example;
+package com.wentjiang.testcase.common;
 
-import com.wentjiang.example.testcase.common.HBaseClient;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.client.Durability;
@@ -9,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
-public class Main {
+public class CommonUsage {
     private static String tableName = "test_table";
     private static String rowKey = "test_rowKey1";
     private static String familyName = "test_field";

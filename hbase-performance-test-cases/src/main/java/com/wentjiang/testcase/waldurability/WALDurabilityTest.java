@@ -1,4 +1,4 @@
-package com.wentjiang.example.testcase.waldurability;
+package com.wentjiang.testcase.waldurability;
 
 public class WALDurabilityTest {
 

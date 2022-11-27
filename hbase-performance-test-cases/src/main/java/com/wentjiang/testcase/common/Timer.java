@@ -1,4 +1,4 @@
-package com.wentjiang.example.testcase.common;
+package com.wentjiang.testcase.common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Timer {
 
     private long startTime;
 
-    private List<MetricTime> metricTimes = new ArrayList<>();
+    private final List<MetricTime> metricTimes = new ArrayList<>();
 
     public void start() {
         startTime = System.currentTimeMillis();

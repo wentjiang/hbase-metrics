@@ -1,9 +1,8 @@
-package com.wentjiang.example.testcase.waldurability;
+package com.wentjiang.testcase.waldurability;
 
-import com.wentjiang.example.testcase.common.HBaseClient;
-import com.wentjiang.example.testcase.common.Timer;
+import com.wentjiang.testcase.common.HBaseClient;
+import com.wentjiang.testcase.common.Timer;
 import org.apache.hadoop.hbase.client.Durability;
-import org.apache.hadoop.hbase.client.Table;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +13,6 @@ public class WALDurabilityCases {
     private final HBaseClient hBaseClient;
 
     private final List<String> familyNames = Arrays.asList("test_family_0", "test_family_1", "test_family_2");
-
-    private final String qualifier = "test_qualifier";
 
     private final int totalInsertNum = 10000;
 

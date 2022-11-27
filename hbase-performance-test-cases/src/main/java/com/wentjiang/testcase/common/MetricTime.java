@@ -1,4 +1,4 @@
-package com.wentjiang.example.testcase.common;
+package com.wentjiang.testcase.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
