@@ -106,4 +106,8 @@ public class HBaseClient {
             throw new RuntimeException(e);
         }
     }
+
+    public Admin getAdmin() {
+        return admin;
+    }
 }

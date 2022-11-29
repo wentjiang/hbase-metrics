@@ -1,6 +1,7 @@
 package com.wentjiang.testcase.waldurability;
 
 import com.wentjiang.testcase.common.HBaseClient;
+import com.wentjiang.testcase.common.TestBase;
 import com.wentjiang.testcase.common.Timer;
 import org.apache.hadoop.hbase.client.Durability;
 
@@ -8,17 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class WALDurabilityCases {
-
-    private final HBaseClient hBaseClient;
+public class WALDurabilityCases extends TestBase {
 
     private final List<String> familyNames = Arrays.asList("test_family_0", "test_family_1", "test_family_2");
 
     private final int totalInsertNum = 10000;
-
-    public WALDurabilityCases() {
-        this.hBaseClient = new HBaseClient();
-    }
 
     public void SKIP_WALTestCase() {
         testCase(Durability.SKIP_WAL);
@@ -81,11 +76,6 @@ public class WALDurabilityCases {
             String rowKey = "row_" + i;
             hBaseClient.deleteRow(tableName, rowKey);
         }
-    }
-
-    private void deleteTable(String tableName) {
-        hBaseClient.disableTable(tableName);
-        hBaseClient.deleteTable(tableName);
     }
 
 }
