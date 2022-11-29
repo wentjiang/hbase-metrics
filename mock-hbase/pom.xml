@@ -45,6 +45,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <finalName>mock-hbase</finalName>
                         </configuration>
                     </execution>
                 </executions>
