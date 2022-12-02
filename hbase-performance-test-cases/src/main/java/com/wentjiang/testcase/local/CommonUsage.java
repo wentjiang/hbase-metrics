@@ -1,5 +1,6 @@
-package com.wentjiang.testcase.common;
+package com.wentjiang.testcase.local;
 
+import com.wentjiang.testcase.common.HBaseClient;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.client.Durability;
