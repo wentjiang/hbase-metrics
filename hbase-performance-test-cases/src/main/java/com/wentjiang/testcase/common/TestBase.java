@@ -13,7 +13,6 @@ public class TestBase {
     }
 
     protected void deleteTable(String tableName) {
-        hBaseClient.disableTable(tableName);
         hBaseClient.deleteTable(tableName);
     }
 }

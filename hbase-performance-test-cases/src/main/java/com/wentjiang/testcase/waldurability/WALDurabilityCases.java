@@ -55,7 +55,6 @@ public class WALDurabilityCases extends TestBase {
         }
     }
 
-
     private String createTempTable(String durability) {
         String tableName = durability + "_" + new Random().nextInt();
         hBaseClient.createTable(tableName, familyNames);

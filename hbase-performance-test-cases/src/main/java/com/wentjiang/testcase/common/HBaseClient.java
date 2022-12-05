@@ -48,7 +48,7 @@ public class HBaseClient {
     }
 
     public void putData(String tableName, String rowKey, String familyName, String qualifier, String value,
-                        Durability durability) {
+            Durability durability) {
         byte[] row = Bytes.toBytes(rowKey);
         Put p = new Put(row);
         p.addImmutable(familyName.getBytes(), qualifier.getBytes(), Bytes.toBytes(value));
@@ -69,6 +69,14 @@ public class HBaseClient {
         }
     }
 
+    public void enableTable(String tableName) {
+        try {
+            admin.enableTable(TableName.valueOf(tableName));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void deleteRow(String tableName, String rowKey) {
         byte[] row = Bytes.toBytes(rowKey);
         Delete d = new Delete(row);
@@ -82,7 +90,9 @@ public class HBaseClient {
 
     public void deleteTable(String tableName) {
         try {
-            admin.deleteTable(TableName.valueOf(tableName));
+            TableName table = TableName.valueOf(tableName);
+            admin.disableTable(table);
+            admin.deleteTable(table);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
