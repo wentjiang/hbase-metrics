@@ -34,21 +34,21 @@ public class HBaseClient {
     }
 
     public void createTable(String tableName, List<String> families) {
-
-        List<ColumnFamilyDescriptor> collect = families.stream().map(ColumnFamilyDescriptorBuilder::of)
-                .collect(Collectors.toList());
-        TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(TableName.valueOf(tableName))
-                .setColumnFamilies(collect).build();
-
-        try {
-            admin.createTable(tableDescriptor);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (!getTableList().contains(tableName)) {
+            List<ColumnFamilyDescriptor> collect = families.stream().map(ColumnFamilyDescriptorBuilder::of)
+                    .collect(Collectors.toList());
+            TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(TableName.valueOf(tableName))
+                    .setColumnFamilies(collect).build();
+            try {
+                admin.createTable(tableDescriptor);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     public void putData(String tableName, String rowKey, String familyName, String qualifier, String value,
-            Durability durability) {
+                        Durability durability) {
         byte[] row = Bytes.toBytes(rowKey);
         Put p = new Put(row);
         p.addImmutable(familyName.getBytes(), qualifier.getBytes(), Bytes.toBytes(value));
@@ -97,6 +97,16 @@ public class HBaseClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ResultScanner scanData(String tableName, Scan scan) {
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            return table.getScanner(scan);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public List<String> getTableList() {
