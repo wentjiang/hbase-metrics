@@ -10,6 +10,7 @@ public class TestHbaseConnection extends TestBase {
         try {
             Arrays.stream(new TestHbaseConnection().admin.listTableNames())
                     .forEach(tableName -> System.out.println(tableName.getNameAsString()));
+            System.out.println("Connect successfully");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

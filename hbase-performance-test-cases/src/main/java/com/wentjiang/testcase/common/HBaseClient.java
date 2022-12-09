@@ -34,16 +34,17 @@ public class HBaseClient {
     }
 
     public void createTable(String tableName, List<String> families) {
-        if (!getTableList().contains(tableName)) {
-            List<ColumnFamilyDescriptor> collect = families.stream().map(ColumnFamilyDescriptorBuilder::of)
-                    .collect(Collectors.toList());
-            TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(TableName.valueOf(tableName))
-                    .setColumnFamilies(collect).build();
-            try {
-                admin.createTable(tableDescriptor);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        if (getTableList().contains(tableName)) {
+            deleteTable(tableName);
+        }
+        List<ColumnFamilyDescriptor> collect = families.stream().map(ColumnFamilyDescriptorBuilder::of)
+                .collect(Collectors.toList());
+        TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(TableName.valueOf(tableName))
+                .setColumnFamilies(collect).build();
+        try {
+            admin.createTable(tableDescriptor);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -91,6 +92,7 @@ public class HBaseClient {
     public void deleteTable(String tableName) {
         try {
             TableName table = TableName.valueOf(tableName);
+            TableDescriptor descriptor = admin.getDescriptor(table);
             admin.disableTable(table);
             admin.deleteTable(table);
         } catch (IOException e) {
