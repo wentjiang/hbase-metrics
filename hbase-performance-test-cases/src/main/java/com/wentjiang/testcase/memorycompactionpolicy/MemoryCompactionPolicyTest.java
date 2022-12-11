@@ -11,5 +11,3 @@ public class MemoryCompactionPolicyTest {
         cases.testCase(MemoryCompactionPolicy.EAGER);
     }
 }
-
-

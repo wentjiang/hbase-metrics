@@ -34,12 +34,13 @@ public class HBaseClient {
     }
 
     public void createTable(String tableName, List<String> families) {
-
+        if (getTableList().contains(tableName)) {
+            deleteTable(tableName);
+        }
         List<ColumnFamilyDescriptor> collect = families.stream().map(ColumnFamilyDescriptorBuilder::of)
                 .collect(Collectors.toList());
         TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(TableName.valueOf(tableName))
                 .setColumnFamilies(collect).build();
-
         try {
             admin.createTable(tableDescriptor);
         } catch (IOException e) {
@@ -69,6 +70,14 @@ public class HBaseClient {
         }
     }
 
+    public void enableTable(String tableName) {
+        try {
+            admin.enableTable(TableName.valueOf(tableName));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void deleteRow(String tableName, String rowKey) {
         byte[] row = Bytes.toBytes(rowKey);
         Delete d = new Delete(row);
@@ -82,7 +91,10 @@ public class HBaseClient {
 
     public void deleteTable(String tableName) {
         try {
-            admin.deleteTable(TableName.valueOf(tableName));
+            TableName table = TableName.valueOf(tableName);
+            TableDescriptor descriptor = admin.getDescriptor(table);
+            admin.disableTable(table);
+            admin.deleteTable(table);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -97,6 +109,16 @@ public class HBaseClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ResultScanner scanData(String tableName, Scan scan) {
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            return table.getScanner(scan);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public List<String> getTableList() {

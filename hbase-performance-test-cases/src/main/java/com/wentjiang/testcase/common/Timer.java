@@ -8,9 +8,15 @@ import java.util.List;
  */
 public class Timer {
 
+    private String caseName;
+
     private long startTime;
 
     private final List<MetricTime> metricTimes = new ArrayList<>();
+
+    public Timer(String caseName) {
+        this.caseName = caseName;
+    }
 
     public void start() {
         startTime = System.currentTimeMillis();
@@ -22,6 +28,7 @@ public class Timer {
 
     public String getMetricReport() {
         StringBuilder result = new StringBuilder();
+        result.append(caseName).append("\n");
         for (int i = 0; i < metricTimes.size(); i++) {
             MetricTime metricTime = metricTimes.get(i);
             long usedTime;

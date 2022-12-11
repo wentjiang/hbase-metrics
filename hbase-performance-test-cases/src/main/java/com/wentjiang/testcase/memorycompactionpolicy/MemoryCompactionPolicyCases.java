@@ -21,9 +21,9 @@ public class MemoryCompactionPolicyCases extends TestBase {
 
     private static final String rowKey = "rowKey";
 
-    public void testCase(MemoryCompactionPolicy compactionPolicy){
+    public void testCase(MemoryCompactionPolicy compactionPolicy) {
         System.out.println(compactionPolicy.name() + " report:");
-        Timer timer = new Timer();
+        Timer timer = new Timer(compactionPolicy.name());
         timer.start();
         String tableName = createTempTable(compactionPolicy);
         timer.metricTime("createTable");
@@ -50,10 +50,9 @@ public class MemoryCompactionPolicyCases extends TestBase {
 
     private String createTempTable(MemoryCompactionPolicy compactionPolicy) {
         String tableName = compactionPolicy.name() + "_" + new Random().nextInt();
-        List<ColumnFamilyDescriptor> collect = familyNames.stream().map(familyName ->
-                        ColumnFamilyDescriptorBuilder.newBuilder(familyName.getBytes(StandardCharsets.UTF_8))
-                                .setInMemoryCompaction(compactionPolicy)
-                                .build())
+        List<ColumnFamilyDescriptor> collect = familyNames.stream()
+                .map(familyName -> ColumnFamilyDescriptorBuilder.newBuilder(familyName.getBytes(StandardCharsets.UTF_8))
+                        .setInMemoryCompaction(compactionPolicy).build())
                 .collect(Collectors.toList());
         TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(TableName.valueOf(tableName))
                 .setColumnFamilies(collect).build();
