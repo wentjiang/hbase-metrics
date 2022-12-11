@@ -56,7 +56,7 @@ public class SecondaryIndexOption1 extends BaseSecondaryIndexTest {
 
     @Override
     void scanData() {
-        IntStream.range(1, getScanDataCount()+1).forEach(index -> {
+        IntStream.range(1, getScanDataCount() + 1).forEach(index -> {
             getBySecondaryIndexKey("idx" + ":" + index + "00" + ":");
         });
     }
