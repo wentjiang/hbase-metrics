@@ -37,7 +37,7 @@ public class WALDurabilityCases extends TestBase {
 
     private void testCase(Durability durability) {
         System.out.println(durability.name() + " report:");
-        Timer timer = new Timer();
+        Timer timer = new Timer(durability.name());
         timer.start();
         String tableName = createTempTable(durability.name());
         timer.metricTime("createTable");

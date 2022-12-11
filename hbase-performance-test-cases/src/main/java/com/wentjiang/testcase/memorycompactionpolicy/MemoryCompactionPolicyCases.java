@@ -23,7 +23,7 @@ public class MemoryCompactionPolicyCases extends TestBase {
 
     public void testCase(MemoryCompactionPolicy compactionPolicy) {
         System.out.println(compactionPolicy.name() + " report:");
-        Timer timer = new Timer();
+        Timer timer = new Timer(compactionPolicy.name());
         timer.start();
         String tableName = createTempTable(compactionPolicy);
         timer.metricTime("createTable");
